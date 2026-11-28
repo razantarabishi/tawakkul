@@ -1,6 +1,8 @@
 import { NgTemplateOutlet } from '@angular/common';
-import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject, input } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { TranslatePipe } from '@ngx-translate/core';
+import { LanguageService } from '../../services/language.service';
 
 export interface FooterLink {
   label: string;
@@ -15,13 +17,13 @@ export interface FooterSocialLink {
 
 @Component({
   selector: 'app-footer',
-  imports: [NgTemplateOutlet, RouterLink],
+  imports: [NgTemplateOutlet, RouterLink, TranslatePipe],
   templateUrl: './footer.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class Footer {
   readonly brand = input.required<{
-    name: string;
+    nameKey: string;
     wordmark: string;
     arabic: string;
     home: string;
@@ -35,5 +37,8 @@ export class Footer {
   readonly legalLinks = input.required<readonly FooterLink[]>();
   readonly socialLinks = input<readonly FooterSocialLink[]>([]);
 
-  protected readonly year = new Date().getFullYear();
+  private readonly languageService = inject(LanguageService);
+  protected readonly year = computed(() =>
+    this.languageService.formatInteger(new Date().getFullYear()),
+  );
 }

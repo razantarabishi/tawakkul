@@ -1,74 +1,92 @@
 <header
-  class="relative border-b border-[#e9e6e7] bg-white text-[#0e0e0f] [font-family:'Be_Vietnam_Pro',ui-sans-serif,system-ui,sans-serif] [&_a:hover]:text-[#801e3e] [&_button:enabled:hover]:text-[#801e3e] [&_:is(a,button):focus-visible]:outline-2 [&_:is(a,button):focus-visible]:outline-offset-2 [&_:is(a,button):focus-visible]:outline-[#801e3e]"
+  class="relative border-b border-[#e9e6e7] bg-white text-[#0e0e0f] [font-family:'Be_Vietnam_Pro',ui-sans-serif,system-ui,sans-serif] [&_a:hover]:text-[#801e3e] [&_button:enabled:not([aria-pressed]):hover]:text-[#801e3e] [&_:is(a,button):focus-visible]:outline-2 [&_:is(a,button):focus-visible]:outline-offset-2 [&_:is(a,button):focus-visible]:outline-[#801e3e] min-[72rem]:[&_:is(a,button,[role=link])]:cursor-pointer"
 >
   <div
     class="mx-auto grid min-h-16 w-full max-w-[88rem] grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] items-center px-[max(1rem,env(safe-area-inset-left),env(safe-area-inset-right))] min-[72rem]:min-h-[4.75rem] min-[72rem]:px-[clamp(1.5rem,3.4vw,3rem)]"
   >
-    <button
-      #menuButton
-      type="button"
-      class="-ms-2 inline-flex size-11 items-center justify-center justify-self-start min-[72rem]:hidden [&_svg]:w-[1.375rem]"
-      [attr.aria-expanded]="mobileOpen()"
-      [attr.aria-label]="mobileOpen() ? 'Close menu' : 'Open menu'"
-      [attr.aria-controls]="navigationId()"
-      (click)="toggleMobile()"
-    >
-      <ng-container
-        *ngTemplateOutlet="icon; context: { $implicit: mobileOpen() ? 'close' : 'menu' }"
-      />
-    </button>
+    <div class="-ms-2 flex items-center justify-self-start min-[72rem]:hidden">
+      <button
+        #menuButton
+        type="button"
+        class="inline-flex size-11 items-center justify-center [&_svg]:w-[1.375rem]"
+        aria-haspopup="dialog"
+        [attr.aria-label]="'NAVBAR.OPEN_MENU' | translate"
+        (click)="setMobileOpen(true)"
+      >
+        <ng-container *ngTemplateOutlet="icon; context: { $implicit: 'menu' }" />
+      </button>
+    </div>
 
     <nav
       [id]="navigationId()"
-      class="absolute inset-x-0 top-full max-h-[calc(100dvh-4rem)] overflow-y-auto overscroll-y-contain border-b border-[#e9e6e7] bg-white px-4 pt-2 pb-[max(1rem,env(safe-area-inset-bottom))] shadow-[0_12px_20px_rgb(14_14_15_/_7%)] min-[72rem]:static min-[72rem]:block min-[72rem]:max-h-none min-[72rem]:overflow-visible min-[72rem]:border-0 min-[72rem]:p-0 min-[72rem]:shadow-none"
-      aria-label="Primary"
-      [class.hidden]="!mobileOpen()"
+      class="hidden min-[72rem]:block"
+      [attr.aria-label]="'NAVBAR.PRIMARY' | translate"
     >
       <ul
-        class="text-[0.6875rem] font-semibold tracking-[0.18em] whitespace-nowrap uppercase min-[72rem]:flex min-[72rem]:items-center min-[72rem]:gap-[clamp(1rem,2.25vw,2.5rem)]"
+        class="flex items-center gap-[clamp(1rem,2.25vw,2.5rem)] text-[0.6875rem] font-semibold tracking-[0.18em] whitespace-nowrap uppercase"
       >
         @for (link of links(); track link.label; let index = $index) {
           <li>
             @if ('sections' in link) {
-              <button
-                #groupButton
-                type="button"
-                class="flex min-h-11 items-center gap-1.5 uppercase aria-expanded:text-[#801e3e] aria-expanded:[&_svg]:rotate-180 [&_svg]:w-3.5"
-                [attr.aria-expanded]="openGroup() === link.label"
-                [attr.aria-controls]="navigationId() + '-group-' + index"
-                (click)="toggleGroup(link.label, groupButton)"
-              >
-                {{ link.label }}
-                <ng-container *ngTemplateOutlet="icon; context: { $implicit: 'chevron' }" />
-              </button>
               <div
-                class="text-[0.875rem] font-normal tracking-normal whitespace-normal normal-case min-[72rem]:absolute min-[72rem]:inset-x-0 min-[72rem]:top-full min-[72rem]:max-h-[calc(100dvh-4.75rem)] min-[72rem]:overflow-y-auto min-[72rem]:overscroll-y-contain min-[72rem]:border-b min-[72rem]:border-[#e9e6e7] min-[72rem]:bg-white min-[72rem]:shadow-[0_12px_20px_rgb(14_14_15_/_7%)] [&_[aria-disabled=true]]:text-[#5c5759]"
-                [id]="navigationId() + '-group-' + index"
-                [hidden]="openGroup() !== link.label"
+                (pointerenter)="enterGroup($event, link.label, groupButton)"
+                (pointerleave)="leaveGroup($event)"
               >
-                <div
-                  class="mx-auto grid w-full max-w-[88rem] gap-4 px-[max(1rem,env(safe-area-inset-left),env(safe-area-inset-right))] pt-2 pb-4 min-[72rem]:grid-cols-[repeat(2,minmax(0,17rem))] min-[72rem]:gap-12 min-[72rem]:px-[clamp(1.5rem,3.4vw,3rem)] min-[72rem]:py-10"
+                <button
+                  #groupButton
+                  type="button"
+                  class="flex min-h-[4.75rem] items-center gap-1.5 uppercase aria-expanded:text-[#801e3e] aria-expanded:[&_svg]:rotate-180 [&_svg]:w-3.5"
+                  [attr.aria-expanded]="openGroup() === link.label"
+                  [attr.aria-controls]="navigationId() + '-group-' + index"
+                  (click)="toggleGroup(link.label, groupButton)"
                 >
-                  @for (section of link.sections; track section.label) {
-                    <div
-                      class="min-[72rem]:not-first:border-s min-[72rem]:not-first:border-[#e9e6e7] min-[72rem]:not-first:ps-8"
-                    >
-                      <p
-                        class="mb-1 text-[0.625rem] font-semibold tracking-[0.14em] text-[#5c5759] uppercase"
+                  {{ link.label | translate }}
+                  <ng-container *ngTemplateOutlet="icon; context: { $implicit: 'chevron' }" />
+                </button>
+                <div
+                  class="absolute inset-x-0 top-full max-h-[calc(100dvh-4.75rem)] overflow-y-auto overscroll-y-contain border-b border-[#e9e6e7] bg-white text-sm font-normal tracking-normal whitespace-normal normal-case shadow-[0_12px_20px_rgb(14_14_15_/_7%)]"
+                  [id]="navigationId() + '-group-' + index"
+                  [hidden]="openGroup() !== link.label"
+                >
+                  <div
+                    class="mx-auto grid w-full max-w-[88rem] grid-cols-12 gap-8 px-[clamp(1.5rem,3.4vw,3rem)] py-12"
+                  >
+                    @for (
+                      section of link.sections;
+                      track section.label;
+                      let first = $first;
+                      let sectionIndex = $index
+                    ) {
+                      <div
+                        class="col-span-3"
+                        [class.col-start-5]="sectionIndex === 1"
+                        [class]="first ? '' : 'border-s border-[#e9e6e7] ps-8'"
                       >
-                        {{ section.label }}
-                      </p>
-                      <ul>
-                        @for (item of section.links; track item.label) {
-                          <li>
-                            <ng-container
-                              *ngTemplateOutlet="textLink; context: { $implicit: item }"
-                            />
-                          </li>
-                        }
-                      </ul>
-                    </div>
-                  }
+                        <p class="text-xs font-semibold tracking-[0.14em] text-[#5c5759] uppercase">
+                          {{ section.label | translate }}
+                        </p>
+                        <ul class="mt-6" [class]="first ? 'space-y-1' : 'space-y-2'">
+                          @for (item of section.links; track item.label) {
+                            <li
+                              class="group/row transition-colors hover:text-[#801e3e] focus-within:text-[#801e3e]"
+                              [class]="
+                                first
+                                  ? 'text-2xl font-semibold tracking-tight uppercase [&>*]:min-h-12'
+                                  : '[&>*]:min-h-7'
+                              "
+                            >
+                              <ng-container
+                                *ngTemplateOutlet="
+                                  textLink;
+                                  context: { $implicit: item, trailingIcon: first ? 'arrow' : null }
+                                "
+                              />
+                            </li>
+                          }
+                        </ul>
+                      </div>
+                    }
+                  </div>
                 </div>
               </div>
             } @else {
@@ -77,23 +95,12 @@
           </li>
         }
       </ul>
-      <ul class="mt-2 border-t border-[#e9e6e7] pt-2 sm:hidden [&_button:disabled]:text-[#5c5759]">
-        @for (action of actions(); track action.icon) {
-          @if (action.inMobileMenu) {
-            <li>
-              <ng-container
-                *ngTemplateOutlet="actionControl; context: { $implicit: action, showLabel: true }"
-              />
-            </li>
-          }
-        }
-      </ul>
     </nav>
 
     <a
       class="flex flex-col items-center justify-self-center gap-1 leading-none whitespace-nowrap"
       [routerLink]="brand().home"
-      [attr.aria-label]="brand().name + ' home'"
+      [attr.aria-label]="'COMMON.HOME_LINK' | translate: { brand: (brand().nameKey | translate) }"
       (click)="close()"
     >
       <span class="text-[0.8125rem] font-medium text-[#801e3e]" lang="ar" dir="rtl">{{
@@ -101,11 +108,16 @@
       }}</span>
       <span
         class="ps-[0.34em] text-[1.0625rem] font-bold tracking-[0.34em] max-[22.5rem]:ps-[0.26em] max-[22.5rem]:text-[0.9375rem] max-[22.5rem]:tracking-[0.26em] sm:text-[1.1875rem]"
+        lang="en"
+        dir="ltr"
         >{{ brand().wordmark }}</span
       >
     </a>
 
-    <ul class="-me-2 flex items-center justify-self-end">
+    <ul class="-me-2 flex items-center justify-self-end max-[22.5rem]:-me-3">
+      <li class="me-2 hidden min-[72rem]:block">
+        <ng-container *ngTemplateOutlet="languageSelector" />
+      </li>
       @for (action of actions(); track action.icon) {
         <li [class.max-sm:hidden]="action.inMobileMenu">
           <ng-container
@@ -117,15 +129,177 @@
   </div>
 </header>
 
-<ng-template #textLink let-link>
+<p-drawer
+  [position]="languageService.direction() === 'rtl' ? 'right' : 'left'"
+  appendTo="body"
+  [blockScroll]="true"
+  [visible]="mobileOpen()"
+  (visibleChange)="setMobileOpen($event)"
+  [pt]="{
+    root: {
+      role: 'dialog',
+      'aria-modal': 'true',
+      'aria-labelledby': navigationId() + '-mobile-title',
+    },
+  }"
+  styleClass="w-full! max-w-96! rounded-none! border-0! bg-white! text-[#0e0e0f]! [font-family:'Be_Vietnam_Pro',ui-sans-serif,system-ui,sans-serif]"
+>
+  <ng-template #headless>
+    <div
+      class="flex min-h-16 shrink-0 items-center justify-between gap-3 border-b border-[#e9e6e7] px-5"
+    >
+      <h2
+        [id]="navigationId() + '-mobile-title'"
+        class="text-xs font-semibold tracking-[0.16em] uppercase"
+      >
+        {{ 'NAVBAR.MENU' | translate }}
+      </h2>
+      <div class="flex items-center gap-2">
+        <ng-container *ngTemplateOutlet="languageSelector" />
+        <button
+          type="button"
+          [attr.aria-label]="'NAVBAR.CLOSE_MENU' | translate"
+          class="-me-3 grid size-11 shrink-0 place-items-center hover:text-[#801e3e] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#801e3e]"
+          [pAutoFocus]="true"
+          (click)="setMobileOpen(false)"
+        >
+          <ng-container *ngTemplateOutlet="icon; context: { $implicit: 'close' }" />
+        </button>
+      </div>
+    </div>
+    <div class="min-h-0 flex-1 overflow-y-auto overscroll-contain">
+      <nav
+        [attr.aria-label]="'NAVBAR.MOBILE' | translate"
+        class="px-5 pb-[max(2rem,env(safe-area-inset-bottom))] [&_:is(a,button):focus-visible]:outline-2 [&_:is(a,button):focus-visible]:outline-offset-2 [&_:is(a,button):focus-visible]:outline-[#801e3e]"
+      >
+        <ul>
+          @for (link of links(); track link.label; let index = $index) {
+            <li>
+              @if ('sections' in link) {
+                <button
+                  type="button"
+                  class="flex min-h-14 w-full items-center justify-between gap-3 border-b border-[#e9e6e7] text-start text-base font-semibold tracking-wide uppercase hover:text-[#801e3e] aria-expanded:[&_svg]:rotate-180 [&_svg]:w-[1.125rem]"
+                  [attr.aria-expanded]="mobileGroup() === link.label"
+                  [attr.aria-controls]="navigationId() + '-mobile-group-' + index"
+                  (click)="toggleMobileGroup(link.label)"
+                >
+                  {{ link.label | translate }}
+                  <ng-container *ngTemplateOutlet="icon; context: { $implicit: 'chevron' }" />
+                </button>
+                <ul
+                  class="border-b border-[#e9e6e7] py-3 ps-4 text-sm"
+                  [id]="navigationId() + '-mobile-group-' + index"
+                  [hidden]="mobileGroup() !== link.label"
+                >
+                  @for (item of link.sections[0]?.links ?? []; track item.label) {
+                    <li class="hover:text-[#801e3e]">
+                      <ng-container *ngTemplateOutlet="textLink; context: { $implicit: item }" />
+                    </li>
+                  }
+                </ul>
+              } @else {
+                <div
+                  class="border-b border-[#e9e6e7] text-base font-semibold tracking-wide uppercase hover:text-[#801e3e] [&>*]:min-h-14"
+                >
+                  <ng-container
+                    *ngTemplateOutlet="textLink; context: { $implicit: link, trailingIcon: 'next' }"
+                  />
+                </div>
+              }
+            </li>
+          }
+        </ul>
+        <ul
+          class="mt-8 grid grid-cols-2 gap-3 text-xs font-semibold tracking-[0.14em] uppercase [&_:is(a,button)]:min-h-12 [&_:is(a,button)]:w-full [&_:is(a,button)]:border [&_:is(a,button)]:border-[#0e0e0f] [&_:is(a,button)]:uppercase [&_svg]:w-4"
+        >
+          @for (action of actions(); track action.icon) {
+            @if (action.inMobileMenu) {
+              <li>
+                <ng-container
+                  *ngTemplateOutlet="actionControl; context: { $implicit: action, showLabel: true }"
+                />
+              </li>
+            }
+          }
+        </ul>
+        @if (mobileSupportLinks().length) {
+          <ul class="mt-8 space-y-1 text-sm text-[#5c5759]">
+            @for (link of mobileSupportLinks(); track link.label) {
+              <li class="hover:text-[#801e3e] [&>*]:min-h-10">
+                <ng-container *ngTemplateOutlet="textLink; context: { $implicit: link }" />
+              </li>
+            }
+          </ul>
+        }
+      </nav>
+    </div>
+  </ng-template>
+</p-drawer>
+
+<ng-template #languageSelector>
+  <div
+    class="inline-flex shrink-0 items-center gap-0.5 rounded-full border border-[#e9e6e7] bg-[#faf8f9] p-0.5"
+    dir="ltr"
+    role="group"
+    [attr.aria-label]="'COMMON.LANGUAGE' | translate"
+  >
+    @for (language of languages; track language.code) {
+      <button
+        type="button"
+        class="grid min-h-10 min-w-10 cursor-pointer place-items-center rounded-full px-2 text-[0.6875rem] font-semibold tracking-wider text-[#5c5759] transition-colors hover:bg-[#f0e6ea] hover:text-[#801e3e] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#801e3e] aria-pressed:bg-[#801e3e] aria-pressed:text-white aria-pressed:hover:bg-[#801e3e] aria-pressed:hover:text-white"
+        [attr.aria-label]="language.label + ' — ' + (language.nameKey | translate)"
+        [attr.aria-pressed]="languageService.language() === language.code"
+        (click)="changeLanguage(language.code)"
+      >
+        {{ language.label }}
+      </button>
+    }
+  </div>
+</ng-template>
+
+<ng-template #textLink let-link let-trailingIcon="trailingIcon">
   @if (link.route) {
-    <a class="flex min-h-11 items-center" [routerLink]="link.route" (click)="close()">{{
-      link.label
-    }}</a>
+    <a
+      class="flex min-h-11 items-center justify-between gap-3 py-1"
+      [routerLink]="link.route"
+      (click)="close()"
+    >
+      <ng-container
+        *ngTemplateOutlet="
+          textLinkContent;
+          context: { label: link.label, trailingIcon: trailingIcon }
+        "
+      />
+    </a>
   } @else {
-    <span class="flex min-h-11 items-center" role="link" aria-disabled="true">{{
-      link.label
-    }}</span>
+    <span
+      class="flex min-h-11 items-center justify-between gap-3 py-1"
+      role="link"
+      aria-disabled="true"
+    >
+      <ng-container
+        *ngTemplateOutlet="
+          textLinkContent;
+          context: { label: link.label, trailingIcon: trailingIcon }
+        "
+      />
+    </span>
+  }
+</ng-template>
+
+<ng-template #textLinkContent let-label="label" let-trailingIcon="trailingIcon">
+  {{ label | translate }}
+  @if (trailingIcon) {
+    <span
+      class="shrink-0 [&_svg]:w-[1.125rem] rtl:[&_svg]:-scale-x-100"
+      [class]="
+        trailingIcon === 'arrow'
+          ? 'opacity-0 transition-opacity group-hover/row:opacity-100 group-focus-within/row:opacity-100'
+          : ''
+      "
+    >
+      <ng-container *ngTemplateOutlet="icon; context: { $implicit: trailingIcon }" />
+    </span>
   }
 </ng-template>
 
@@ -134,7 +308,7 @@
     <a
       class="inline-flex min-h-11 min-w-11 items-center justify-center gap-3"
       [routerLink]="action.route"
-      [attr.aria-label]="action.label"
+      [attr.aria-label]="action.label | translate"
       (click)="close()"
     >
       <ng-container
@@ -143,11 +317,13 @@
     </a>
   } @else {
     <button
+      #actionButton
       type="button"
       class="inline-flex min-h-11 min-w-11 items-center justify-center gap-3"
       [disabled]="!action.onSelect"
-      [attr.aria-label]="action.label"
-      (click)="close(); action.onSelect?.()"
+      [attr.aria-label]="action.label | translate"
+      [attr.aria-haspopup]="action.opensDialog ? 'dialog' : null"
+      (click)="close(); action.onSelect?.(actionButton)"
     >
       <ng-container
         *ngTemplateOutlet="actionContent; context: { $implicit: action, showLabel: showLabel }"
@@ -159,7 +335,7 @@
 <ng-template #actionContent let-action let-showLabel="showLabel">
   <ng-container *ngTemplateOutlet="icon; context: { $implicit: action.icon }" />
   @if (showLabel) {
-    <span>{{ action.label }}</span>
+    <span>{{ action.label | translate }}</span>
   }
 </ng-template>
 
@@ -192,6 +368,12 @@
       }
       @case ('chevron') {
         <path d="m6 9 6 6 6-6" />
+      }
+      @case ('next') {
+        <path d="m9 6 6 6-6 6" />
+      }
+      @case ('arrow') {
+        <path d="M4 12h16M14 6l6 6-6 6" />
       }
       @case ('menu') {
         <path d="M3 7h18M3 12h18M3 17h12" />

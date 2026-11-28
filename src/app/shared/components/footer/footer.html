@@ -1,97 +1,155 @@
 <footer
-  class="bg-[#101010] text-white [&_a:hover]:underline [&_a:hover]:underline-offset-4 [&_a:focus-visible]:outline-2 [&_a:focus-visible]:outline-offset-4 [&_a:focus-visible]:outline-white">
+  class="bg-[#101010] text-white [&_a:hover]:underline [&_a:hover]:underline-offset-4 [&_a:focus-visible]:outline-2 [&_a:focus-visible]:outline-offset-4 [&_a:focus-visible]:outline-white"
+>
   <div
-    class="mx-auto w-full max-w-[88rem] px-[max(1rem,env(safe-area-inset-left),env(safe-area-inset-right))] pt-12 pb-8 sm:px-8 sm:pt-16 min-[72rem]:px-12 min-[72rem]:pt-24 min-[72rem]:pb-10">
-    <div class="grid grid-cols-2 gap-x-6 gap-y-10 min-[72rem]:grid-cols-12 min-[72rem]:gap-x-8">
-      <div class="col-span-2 min-w-0 min-[72rem]:col-span-5">
-        <a class="inline-flex max-w-full flex-col items-center gap-2 px-2 leading-none hover:no-underline"
-          [routerLink]="brand().home" [attr.aria-label]="brand().name + ' home'">
+    class="mx-auto w-full max-w-[88rem] px-[max(1.25rem,env(safe-area-inset-left),env(safe-area-inset-right))] pt-16 pb-8 sm:px-8 lg:px-12 lg:pt-24 lg:pb-10"
+  >
+    <div class="grid gap-y-12 lg:grid-cols-12 lg:gap-x-8">
+      <div class="min-w-0 lg:col-span-5">
+        <a
+          class="inline-flex max-w-full flex-col items-center gap-2 px-2 leading-none hover:no-underline"
+          [routerLink]="brand().home"
+          [attr.aria-label]="
+            'COMMON.HOME_LINK' | translate: { brand: (brand().nameKey | translate) }
+          "
+        >
           <span class="text-xl font-medium text-white/80" lang="ar" dir="rtl">{{
             brand().arabic
-            }}</span>
-          <span class="ps-[0.28em] text-2xl font-bold tracking-[0.28em] sm:text-[2rem]">
+          }}</span>
+          <span
+            class="ps-[0.28em] text-[clamp(1.5rem,8vw,2rem)] font-bold tracking-[0.28em]"
+            lang="en"
+            dir="ltr"
+          >
             {{ brand().wordmark }}
           </span>
         </a>
 
-        <p class="mt-7 text-lg leading-tight font-bold tracking-tight uppercase sm:mt-9 sm:text-2xl">
-          {{ tagline() }}
-          <span class="block text-[#888688]">{{ supportingLine() }}</span>
+        <p
+          class="mt-9 text-[clamp(1.25rem,6vw,1.5rem)] leading-tight font-bold tracking-tight uppercase"
+        >
+          {{ tagline() | translate }}
+          <span class="block text-[#888688]">{{ supportingLine() | translate }}</span>
         </p>
 
-        <div class="mt-8 max-w-96 sm:mt-10" role="group" aria-label="Newsletter">
+        <div
+          class="mt-8 max-w-96 sm:mt-10"
+          role="group"
+          [attr.aria-label]="'FOOTER.NEWSLETTER' | translate"
+        >
           <p class="mb-2 text-xs font-semibold tracking-[0.14em] text-[#a6a4a6] uppercase">
-            Newsletter
+            {{ 'FOOTER.NEWSLETTER' | translate }}
           </p>
           <div class="flex items-center gap-3 border-b border-white/45 py-2">
-            <input class="min-h-11 min-w-0 flex-1 bg-transparent text-sm placeholder:text-[#b8b5b8]" type="email"
-              aria-label="Your email address" placeholder="Your email address" disabled />
-            <button class="inline-flex min-h-11 items-center gap-2 text-xs font-semibold tracking-[0.12em] uppercase"
-              type="button" disabled>
-              Subscribe <i class="pi pi-arrow-right" aria-hidden="true"></i>
+            <input
+              class="min-h-11 min-w-0 flex-1 bg-transparent text-sm placeholder:text-[#b8b5b8]"
+              type="email"
+              [attr.aria-label]="'FOOTER.EMAIL_ADDRESS' | translate"
+              [placeholder]="'FOOTER.EMAIL_ADDRESS' | translate"
+              disabled
+            />
+            <button
+              class="inline-flex min-h-11 items-center gap-2 text-xs font-semibold tracking-[0.12em] uppercase"
+              type="button"
+              disabled
+            >
+              {{ 'FOOTER.SUBSCRIBE' | translate }}
+              <i class="pi pi-arrow-right rtl:-scale-x-100" aria-hidden="true"></i>
             </button>
           </div>
-          <p class="mt-2 text-xs text-[#a6a4a6]">Newsletter signup is currently unavailable.</p>
+          <p class="mt-2 text-xs text-[#a6a4a6]">
+            {{ 'FOOTER.NEWSLETTER_UNAVAILABLE' | translate }}
+          </p>
         </div>
       </div>
 
-      <div class="min-w-0 min-[72rem]:col-span-2">
-        <ng-container *ngTemplateOutlet="linkList; context: { title: 'Shop', links: shopLinks() }" />
+      <div class="min-w-0 lg:col-span-2">
+        <ng-container
+          *ngTemplateOutlet="linkList; context: { title: 'FOOTER.SHOP', links: shopLinks() }"
+        />
       </div>
-      <div class="min-w-0 min-[72rem]:col-span-2">
-        <ng-container *ngTemplateOutlet="linkList; context: { title: 'Customer Care', links: careLinks() }" />
+      <div class="min-w-0 lg:col-span-2">
+        <ng-container
+          *ngTemplateOutlet="
+            linkList;
+            context: { title: 'FOOTER.CUSTOMER_CARE', links: careLinks() }
+          "
+        />
       </div>
 
-      <div
-        class="col-span-2 grid gap-x-6 gap-y-8 sm:grid-cols-2 min-[72rem]:col-span-3 min-[72rem]:grid-cols-1 min-[72rem]:content-start">
-        <ng-container *ngTemplateOutlet="linkList; context: { title: 'About Tawakkul', links: aboutLinks() }" />
+      <div class="grid gap-y-8 lg:col-span-3 lg:content-start">
+        <ng-container
+          *ngTemplateOutlet="linkList; context: { title: 'FOOTER.ABOUT', links: aboutLinks() }"
+        />
         <div>
           <h2 class="mb-2 text-xs font-semibold tracking-[0.14em] text-[#a6a4a6] uppercase">
-            Contact
+            {{ 'FOOTER.CONTACT' | translate }}
           </h2>
-          <a class="inline-flex min-h-11 max-w-full items-center gap-2 text-sm wrap-anywhere" [href]="website().url">
-            <i class="pi pi-globe shrink-0" aria-hidden="true"></i>{{ website().label }}
+          <a
+            class="inline-flex min-h-11 max-w-full items-center gap-2 text-sm wrap-anywhere"
+            [href]="website().url"
+          >
+            <i class="pi pi-globe shrink-0" aria-hidden="true"></i
+            ><bdi dir="ltr">{{ website().label }}</bdi>
           </a>
           @if (socialLinks().length) {
-          <ul class="mt-3 flex flex-wrap gap-1" aria-label="Social media">
-            @for (social of socialLinks(); track social.icon) {
-            <li>
-              @if (social.url) {
-              <a class="grid size-11 place-items-center border border-white/20 hover:border-white/50"
-                [href]="social.url" [attr.aria-label]="social.label">
-                <i [class]="'pi pi-' + social.icon" aria-hidden="true"></i>
-              </a>
-              } @else {
-              <span class="grid size-11 place-items-center border border-white/20" role="link" aria-disabled="true"
-                [attr.aria-label]="social.label">
-                <i [class]="'pi pi-' + social.icon" aria-hidden="true"></i>
-              </span>
+            <ul
+              class="mt-3 flex flex-wrap gap-1"
+              [attr.aria-label]="'FOOTER.SOCIAL_MEDIA' | translate"
+            >
+              @for (social of socialLinks(); track social.icon) {
+                <li>
+                  @if (social.url) {
+                    <a
+                      class="grid size-11 place-items-center border border-white/20 hover:border-white/50"
+                      [href]="social.url"
+                      [attr.aria-label]="social.label | translate"
+                    >
+                      <i [class]="'pi pi-' + social.icon" aria-hidden="true"></i>
+                    </a>
+                  } @else {
+                    <span
+                      class="grid size-11 place-items-center border border-white/20"
+                      role="link"
+                      aria-disabled="true"
+                      [attr.aria-label]="social.label | translate"
+                    >
+                      <i [class]="'pi pi-' + social.icon" aria-hidden="true"></i>
+                    </span>
+                  }
+                </li>
               }
-            </li>
-            }
-          </ul>
+            </ul>
           }
         </div>
       </div>
     </div>
 
-    <div class="@container mt-12 sm:mt-16 min-[72rem]:mt-20">
+    <div class="@container mt-20">
       <div class="flex items-end justify-between gap-2" aria-hidden="true">
-        <span class="text-[16.35cqw] leading-[0.82] font-black tracking-[-0.045em] whitespace-nowrap">
+        <span
+          class="text-[17.5cqw] leading-[0.82] font-black tracking-[-0.045em] whitespace-nowrap sm:text-[16.35cqw]"
+          lang="en"
+          dir="ltr"
+        >
           {{ brand().wordmark }}
         </span>
         <span
-          class="mb-[0.5cqw] h-[4.25cqw] w-[3cqw] shrink-0 bg-[#801e3e] [clip-path:polygon(0_0,100%_0,100%_100%,50%_72%,0_100%)]"></span>
+          class="mb-[0.5cqw] hidden h-[4.25cqw] w-[3cqw] shrink-0 bg-[#801e3e] [clip-path:polygon(0_0,100%_0,100%_100%,50%_72%,0_100%)] sm:block"
+        ></span>
       </div>
     </div>
 
     <div
-      class="mt-6 grid gap-x-6 gap-y-3 border-t border-white/15 pt-5 text-xs text-[#a6a4a6] sm:mt-8 min-[72rem]:grid-cols-[1fr_auto_1fr] min-[72rem]:items-center">
-      <p>© {{ year }} {{ brand().name }}. All rights reserved.</p>
-      <nav aria-label="Legal">
+      class="mt-6 grid gap-x-6 gap-y-3 border-t border-white/15 pt-5 text-xs text-[#a6a4a6] sm:mt-8 min-[72rem]:grid-cols-[1fr_auto_1fr] min-[72rem]:items-center"
+    >
+      <p>
+        {{ 'FOOTER.COPYRIGHT' | translate: { year: year(), brand: (brand().nameKey | translate) } }}
+      </p>
+      <nav [attr.aria-label]="'FOOTER.LEGAL' | translate">
         <ul class="flex flex-wrap gap-x-6">
           @for (link of legalLinks(); track link.label) {
-          <li><ng-container *ngTemplateOutlet="footerLink; context: { $implicit: link }" /></li>
+            <li><ng-container *ngTemplateOutlet="footerLink; context: { $implicit: link }" /></li>
           }
         </ul>
       </nav>
@@ -100,13 +158,13 @@
 </footer>
 
 <ng-template #linkList let-title="title" let-links="links">
-  <nav [attr.aria-label]="title">
+  <nav [attr.aria-label]="title | translate">
     <h2 class="mb-3 text-xs font-semibold tracking-[0.14em] text-[#a6a4a6] uppercase sm:mb-5">
-      {{ title }}
+      {{ title | translate }}
     </h2>
     <ul class="text-sm">
       @for (link of links; track link.label) {
-      <li><ng-container *ngTemplateOutlet="footerLink; context: { $implicit: link }" /></li>
+        <li><ng-container *ngTemplateOutlet="footerLink; context: { $implicit: link }" /></li>
       }
     </ul>
   </nav>
@@ -114,10 +172,12 @@
 
 <ng-template #footerLink let-link>
   @if (link.route) {
-  <a class="inline-flex min-h-9 items-center py-1" [routerLink]="link.route">{{ link.label }}</a>
+    <a class="inline-flex min-h-9 items-center py-1" [routerLink]="link.route">{{
+      link.label | translate
+    }}</a>
   } @else {
-  <span class="inline-flex min-h-9 items-center py-1" role="link" aria-disabled="true">{{
-    link.label
+    <span class="inline-flex min-h-9 items-center py-1" role="link" aria-disabled="true">{{
+      link.label | translate
     }}</span>
   }
 </ng-template>

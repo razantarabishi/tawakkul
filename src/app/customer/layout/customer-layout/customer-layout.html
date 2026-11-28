@@ -1,9 +1,15 @@
 <div class="flex flex-col min-h-screen">
+  <p
+    class="bg-[#101010] px-5 py-1.5 text-center text-[0.625rem] leading-[1.45] font-semibold tracking-[0.2em] text-white uppercase min-[72rem]:hidden"
+  >
+    {{ 'CUSTOMER.ANNOUNCEMENT' | translate }}
+  </p>
   <app-navbar
     class="sticky top-0 z-30 block"
     [brand]="brand"
     [links]="navigation"
     [actions]="actions"
+    [mobileSupportLinks]="mobileSupportLinks"
   />
 
   <main class="flex-1">
@@ -12,8 +18,8 @@
 
   <app-footer
     [brand]="brand"
-    tagline="Modesty, everywhere."
-    supportingLine="Beyond the ordinary."
+    tagline="FOOTER.TAGLINE"
+    supportingLine="FOOTER.SUPPORTING_LINE"
     [website]="website"
     [shopLinks]="shopLinks"
     [careLinks]="careLinks"
@@ -22,3 +28,5 @@
     [socialLinks]="socialLinks"
   />
 </div>
+
+<app-shopping-bag />

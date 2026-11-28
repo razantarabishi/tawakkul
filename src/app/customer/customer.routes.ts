@@ -4,15 +4,18 @@ export const CUSTOMER_ROUTES: Routes = [
   {
     path: '',
     loadComponent: () =>
-      import('./layout/customer-layout/customer-layout')
-        .then(m => m.CustomerLayout),
+      import('./layout/customer-layout/customer-layout').then((m) => m.CustomerLayout),
     children: [
       {
         path: '',
-        loadComponent: () =>
-          import('./home/home')
-            .then(m => m.Home)
-      }
-    ]
-  }
+        pathMatch: 'full',
+        loadComponent: () => import('./home/home').then((m) => m.Home),
+      },
+      {
+        path: '',
+        loadChildren: () =>
+          import('./support/support.routes').then((module) => module.SUPPORT_ROUTES),
+      },
+    ],
+  },
 ];

@@ -1,0 +1,456 @@
+{
+  "en": {
+    "COMMON": {
+      "HOME": "Home",
+      "HOME_LINK": "{{brand}} home",
+      "LANGUAGE": "Language",
+      "LANGUAGE_ENGLISH": "English",
+      "LANGUAGE_ARABIC": "Arabic",
+      "BRAND_NAME": "Tawakkul Modest",
+      "COLLECTIONS": "Collections",
+      "CONTACT_US": "Contact Us",
+      "FAQ": "FAQ",
+      "SIZE_GUIDE": "Size Guide",
+      "SHIPPING_AND_RETURNS": "Shipping & Returns",
+      "SIGN_IN": "Sign in",
+      "WISHLIST": "Wishlist"
+    },
+    "NAVBAR": {
+      "MENU": "Menu",
+      "OPEN_MENU": "Open menu",
+      "CLOSE_MENU": "Close menu",
+      "PRIMARY": "Primary",
+      "MOBILE": "Mobile",
+      "NEW_ARRIVALS": "New Arrivals",
+      "WOMEN": "Women",
+      "KIDS": "Tawakkul Kids",
+      "OUR_STORY": "Our Story",
+      "SHOP_ALL": "Shop All",
+      "SPORT_CHIC": "Sport Chic",
+      "ABAYAS": "Abayas",
+      "SCARVES_ACCESSORIES": "Scarves & Accessories",
+      "JACKETS_COATS": "Jackets & Coats",
+      "MODEST_SWIMWEAR": "Modest Swimwear",
+      "DISCOVER": "Discover",
+      "TAWAKKUL_SET": "The Tawakkul Set",
+      "ALL_COLLECTIONS": "All Collections",
+      "SEARCH": "Search"
+    },
+    "CUSTOMER": {
+      "HOME_WELCOME": "Welcome to Tawakkul Modest",
+      "ANNOUNCEMENT": "Discover the new perspective on modest fashion.",
+      "SHOPPING_BAG": {
+        "TITLE": "Shopping Bag ({{count}})",
+        "EMPTY_LABEL": "Shopping bag, 0 items",
+        "CLOSE": "Close shopping bag",
+        "EMPTY_TITLE": "Your bag is empty",
+        "EMPTY_DESCRIPTION": "Discover pieces made to stand apart.",
+        "SHOP_COLLECTION": "Shop the collection"
+      }
+    },
+    "FOOTER": {
+      "TAGLINE": "Modesty, everywhere.",
+      "SUPPORTING_LINE": "Beyond the ordinary.",
+      "NEWSLETTER": "Newsletter",
+      "EMAIL_ADDRESS": "Your email address",
+      "SUBSCRIBE": "Subscribe",
+      "NEWSLETTER_UNAVAILABLE": "Newsletter signup is currently unavailable.",
+      "SHOP": "Shop",
+      "CUSTOMER_CARE": "Customer Care",
+      "ABOUT": "About Tawakkul",
+      "CONTACT": "Contact",
+      "SOCIAL_MEDIA": "Social media",
+      "LEGAL": "Legal",
+      "COPYRIGHT": "© {{year}} {{brand}}. All rights reserved.",
+      "TRACK_ORDER": "Track an Order",
+      "MY_ACCOUNT": "My Account",
+      "CONNECTION": "A Connection Beyond Fashion",
+      "PRIVACY_POLICY": "Privacy Policy",
+      "TERMS_AND_CONDITIONS": "Terms & Conditions",
+      "INSTAGRAM": "Instagram",
+      "TELEGRAM": "Telegram",
+      "YOUTUBE": "YouTube"
+    },
+    "ADMIN": {
+      "DASHBOARD_PLACEHOLDER": "dashboard works!"
+    },
+    "SUPPORT": {
+      "BREADCRUMB": "Breadcrumb",
+      "LEGAL": "Legal",
+      "POLICY_DRAFT": "Draft for review. Tawakkul will confirm the final policy before launch.",
+      "CONTACT": {
+        "EYEBROW": "We’re here for you",
+        "INTRO": "Questions about an order, sizing or a piece you love? Send us a message and our team will be in touch.",
+        "LOADING": "Loading the contact form…",
+        "FULL_NAME": "Full name",
+        "EMAIL_ADDRESS": "Email address",
+        "ORDER_REFERENCE": "Order reference",
+        "OPTIONAL": "Optional",
+        "TOPIC": "Topic",
+        "SELECT_TOPIC": "Select a topic",
+        "TOPICS": {
+          "order": "Order enquiry",
+          "sizing": "Sizing & custom sizing",
+          "shipping": "Shipping & returns",
+          "product": "Product information",
+          "other": "Other"
+        },
+        "MESSAGE": "Message",
+        "SEND": "Send message",
+        "SENDING": "Sending…",
+        "INVALID_NAME": "Enter your full name using up to 120 characters.",
+        "INVALID_EMAIL": "Enter a valid email address.",
+        "INVALID_ORDER": "Enter an order reference of up to 100 characters.",
+        "INVALID_TOPIC": "Select a topic for your message.",
+        "INVALID_MESSAGE": "Enter a message using up to 4,000 characters.",
+        "SUCCESS": "Your message has been received.",
+        "ERROR": "We couldn’t send your message. Your entries are still here. Please try again.",
+        "REPLY_TITLE": "Replies",
+        "REPLY_TEXT": "Use an email address where our team can reach you.",
+        "PRIVACY_LINK": "How we use information from this form"
+      },
+      "FAQ": {
+        "EYEBROW": "Frequently asked questions",
+        "INTRO": "Answers to common questions about orders, sizing, delivery and payment. Store policies will be confirmed before launch.",
+        "MORE_QUESTIONS": "Still have a question?",
+        "ORDERS": {
+          "TITLE": "Orders",
+          "ACCOUNT": {
+            "QUESTION": "Do I need an account to place an order?",
+            "ANSWER": "Account and guest checkout options will be confirmed when the store opens."
+          },
+          "TRACKING": {
+            "QUESTION": "How can I track my order?",
+            "ANSWER": "If you have an order confirmation, check it for tracking details. You can also contact us with your order reference."
+          },
+          "CHANGE": {
+            "QUESTION": "Can I change or cancel my order?",
+            "ANSWER": "Contact us as soon as possible with your order reference. The store’s change and cancellation policy is pending confirmation."
+          }
+        },
+        "SIZING": {
+          "TITLE": "Sizing",
+          "FIT": {
+            "QUESTION": "Which size should I choose?",
+            "ANSWER": "Our size guide is being prepared. If you need help with a particular piece, tell us which one you’re considering."
+          },
+          "CUSTOM": {
+            "QUESTION": "Do you offer custom sizing?",
+            "ANSWER": "Custom sizing availability and timing are pending confirmation. Contact us about the piece you’re interested in."
+          }
+        },
+        "SHIPPING": {
+          "TITLE": "Shipping & Returns",
+          "DESTINATIONS": {
+            "QUESTION": "Where do you ship?",
+            "ANSWER": "Shipping destinations will be confirmed before launch."
+          },
+          "RETURNS": {
+            "QUESTION": "What is your return policy?",
+            "ANSWER": "See Shipping & Returns for updates. Return and exchange terms are pending confirmation."
+          }
+        },
+        "PAYMENT": {
+          "TITLE": "Payment",
+          "METHODS": {
+            "QUESTION": "Which payment methods are accepted?",
+            "ANSWER": "Accepted payment methods will be confirmed before checkout opens."
+          }
+        }
+      },
+      "SHIPPING": {
+        "DELIVERY": {
+          "TITLE": "Delivery options",
+          "BODY": "Delivery methods, estimated timings and charges will be confirmed before checkout opens."
+        },
+        "DESTINATIONS": {
+          "TITLE": "Shipping destinations",
+          "BODY": "Tawakkul will confirm the destinations it serves before launch."
+        },
+        "CUSTOM": {
+          "TITLE": "Custom-sized pieces",
+          "BODY": "Production and delivery timings for custom-sized pieces are pending confirmation."
+        },
+        "RETURNS": {
+          "TITLE": "Returns & exchanges",
+          "BODY": "Eligibility, return windows and the exchange process are pending confirmation."
+        },
+        "CONTACT": {
+          "TITLE": "Contact",
+          "BODY": "Get in touch with Customer Care if you have a question about delivery or returns."
+        }
+      },
+      "PRIVACY": {
+        "COLLECTION": {
+          "TITLE": "Information we collect",
+          "BODY": "The contact form asks for your name, email address, topic and message. You can also provide an order reference."
+        },
+        "USAGE": {
+          "TITLE": "How we use information",
+          "BODY": "Customer Care uses the information you submit to review your enquiry and respond."
+        },
+        "LOCAL_STORAGE": {
+          "TITLE": "Language preference",
+          "BODY": "The storefront saves your selected language in your browser so it can restore your preference on your next visit."
+        },
+        "RIGHTS": {
+          "TITLE": "Your privacy enquiries",
+          "BODY": "You can contact Customer Care with questions about the information you submit. The full privacy policy is pending review."
+        },
+        "CONTACT": {
+          "TITLE": "Contact",
+          "BODY": "Use our contact form for privacy enquiries. Leave out passwords and payment details."
+        }
+      },
+      "TERMS": {
+        "INTRODUCTION": {
+          "TITLE": "Introduction",
+          "BODY": "This draft outlines the areas Tawakkul will cover in its final store terms."
+        },
+        "ORDERS": {
+          "TITLE": "Orders & pricing",
+          "BODY": "Order acceptance, pricing and currency details will be confirmed before checkout opens."
+        },
+        "PAYMENT": {
+          "TITLE": "Payment",
+          "BODY": "Accepted payment methods are pending confirmation."
+        },
+        "DELIVERY": {
+          "TITLE": "Delivery & returns",
+          "BODY": "See Shipping & Returns for the current status of delivery and return terms."
+        },
+        "INTELLECTUAL_PROPERTY": {
+          "TITLE": "Intellectual property",
+          "BODY": "The final terms will cover the use of Tawakkul’s brand assets, imagery and content."
+        }
+      }
+    }
+  },
+  "ar": {
+    "COMMON": {
+      "HOME": "الرئيسية",
+      "HOME_LINK": "الصفحة الرئيسية لـ {{brand}}",
+      "LANGUAGE": "اللغة",
+      "LANGUAGE_ENGLISH": "الإنجليزية",
+      "LANGUAGE_ARABIC": "العربية",
+      "BRAND_NAME": "توكّل مودست",
+      "COLLECTIONS": "المجموعات",
+      "CONTACT_US": "تواصلوا معنا",
+      "FAQ": "الأسئلة الشائعة",
+      "SIZE_GUIDE": "دليل المقاسات",
+      "SHIPPING_AND_RETURNS": "الشحن والإرجاع",
+      "SIGN_IN": "تسجيل الدخول",
+      "WISHLIST": "قائمة الأمنيات"
+    },
+    "NAVBAR": {
+      "MENU": "القائمة",
+      "OPEN_MENU": "فتح القائمة",
+      "CLOSE_MENU": "إغلاق القائمة",
+      "PRIMARY": "التنقل الرئيسي",
+      "MOBILE": "قائمة التنقل على الجوال",
+      "NEW_ARRIVALS": "وصل حديثًا",
+      "WOMEN": "النساء",
+      "KIDS": "توكّل للأطفال",
+      "OUR_STORY": "قصّتنا",
+      "SHOP_ALL": "تسوّقوا جميع القطع",
+      "SPORT_CHIC": "أناقة رياضية",
+      "ABAYAS": "عباءات",
+      "SCARVES_ACCESSORIES": "أوشحة وإكسسوارات",
+      "JACKETS_COATS": "سترات ومعاطف",
+      "MODEST_SWIMWEAR": "ملابس سباحة محتشمة",
+      "DISCOVER": "اكتشفوا",
+      "TAWAKKUL_SET": "طقم توكّل",
+      "ALL_COLLECTIONS": "جميع المجموعات",
+      "SEARCH": "بحث"
+    },
+    "CUSTOMER": {
+      "HOME_WELCOME": "أهلًا بكم في توكّل مودست",
+      "ANNOUNCEMENT": "اكتشفوا منظورًا جديدًا للأزياء المحتشمة.",
+      "SHOPPING_BAG": {
+        "TITLE": "حقيبة التسوّق ({{count}})",
+        "EMPTY_LABEL": "حقيبة التسوّق، ٠ قطعة",
+        "CLOSE": "إغلاق حقيبة التسوّق",
+        "EMPTY_TITLE": "حقيبة التسوّق فارغة",
+        "EMPTY_DESCRIPTION": "اكتشفوا قطعًا صُمّمت لتتميّز.",
+        "SHOP_COLLECTION": "تسوّقوا المجموعة"
+      }
+    },
+    "FOOTER": {
+      "TAGLINE": "الاحتشام في كل مكان.",
+      "SUPPORTING_LINE": "أبعد من المألوف.",
+      "NEWSLETTER": "النشرة البريدية",
+      "EMAIL_ADDRESS": "عنوان بريدكم الإلكتروني",
+      "SUBSCRIBE": "اشتركوا",
+      "NEWSLETTER_UNAVAILABLE": "الاشتراك في النشرة البريدية غير متاح حاليًا.",
+      "SHOP": "التسوّق",
+      "CUSTOMER_CARE": "خدمة العملاء",
+      "ABOUT": "عن توكّل",
+      "CONTACT": "التواصل",
+      "SOCIAL_MEDIA": "وسائل التواصل الاجتماعي",
+      "LEGAL": "السياسات القانونية",
+      "COPYRIGHT": "© {{year}} {{brand}}. جميع الحقوق محفوظة.",
+      "TRACK_ORDER": "تتبّع الطلب",
+      "MY_ACCOUNT": "حسابي",
+      "CONNECTION": "رابط يتجاوز الموضة",
+      "PRIVACY_POLICY": "سياسة الخصوصية",
+      "TERMS_AND_CONDITIONS": "الشروط والأحكام",
+      "INSTAGRAM": "إنستغرام",
+      "TELEGRAM": "تيليغرام",
+      "YOUTUBE": "يوتيوب"
+    },
+    "ADMIN": {
+      "DASHBOARD_PLACEHOLDER": "لوحة التحكم تعمل!"
+    },
+    "SUPPORT": {
+      "BREADCRUMB": "مسار التنقل",
+      "LEGAL": "السياسات القانونية",
+      "POLICY_DRAFT": "مسودة للمراجعة. سيؤكّد توكّل السياسة النهائية قبل إطلاق المتجر.",
+      "CONTACT": {
+        "EYEBROW": "نحن هنا لمساعدتكم",
+        "INTRO": "هل لديكم سؤال عن طلب أو مقاس أو قطعة أعجبتكم؟ أرسلوا إلينا رسالة وسيتواصل معكم فريقنا.",
+        "LOADING": "جارٍ تحميل نموذج التواصل…",
+        "FULL_NAME": "الاسم الكامل",
+        "EMAIL_ADDRESS": "البريد الإلكتروني",
+        "ORDER_REFERENCE": "مرجع الطلب",
+        "OPTIONAL": "اختياري",
+        "TOPIC": "الموضوع",
+        "SELECT_TOPIC": "اختاروا موضوعًا",
+        "TOPICS": {
+          "order": "استفسار عن طلب",
+          "sizing": "المقاسات والتفصيل حسب المقاس",
+          "shipping": "الشحن والإرجاع",
+          "product": "معلومات عن المنتج",
+          "other": "موضوع آخر"
+        },
+        "MESSAGE": "الرسالة",
+        "SEND": "إرسال الرسالة",
+        "SENDING": "جارٍ الإرسال…",
+        "INVALID_NAME": "أدخلوا الاسم الكامل بما لا يتجاوز ١٢٠ حرفًا.",
+        "INVALID_EMAIL": "أدخلوا عنوان بريد إلكتروني صالحًا.",
+        "INVALID_ORDER": "أدخلوا مرجع الطلب بما لا يتجاوز ١٠٠ حرف.",
+        "INVALID_TOPIC": "اختاروا موضوع الرسالة.",
+        "INVALID_MESSAGE": "أدخلوا رسالة بما لا يتجاوز ٤٬٠٠٠ حرف.",
+        "SUCCESS": "تم استلام رسالتكم.",
+        "ERROR": "تعذّر إرسال الرسالة. ما زالت بياناتكم في النموذج. يرجى إعادة المحاولة.",
+        "REPLY_TITLE": "الردود",
+        "REPLY_TEXT": "استخدموا بريدًا إلكترونيًا يمكن لفريقنا التواصل معكم عبره.",
+        "PRIVACY_LINK": "كيف نستخدم المعلومات الواردة في هذا النموذج"
+      },
+      "FAQ": {
+        "EYEBROW": "الأسئلة الشائعة",
+        "INTRO": "إجابات عن الأسئلة الشائعة حول الطلبات والمقاسات والتوصيل والدفع. ستُعتمد سياسات المتجر قبل إطلاقه.",
+        "MORE_QUESTIONS": "هل لديكم سؤال آخر؟",
+        "ORDERS": {
+          "TITLE": "الطلبات",
+          "ACCOUNT": {
+            "QUESTION": "هل أحتاج إلى حساب لتقديم طلب؟",
+            "ANSWER": "سيُعلن عن خيارات إتمام الشراء بحساب أو كضيف عند افتتاح المتجر."
+          },
+          "TRACKING": {
+            "QUESTION": "كيف يمكنني تتبّع طلبي؟",
+            "ANSWER": "إذا وصلكم تأكيد للطلب، تحقّقوا مما إذا كان يتضمّن معلومات التتبّع. يمكنكم أيضًا التواصل معنا وإرفاق مرجع الطلب."
+          },
+          "CHANGE": {
+            "QUESTION": "هل يمكنني تعديل طلبي أو إلغاؤه؟",
+            "ANSWER": "تواصلوا معنا في أقرب وقت ممكن مع ذكر مرجع الطلب. سياسة التعديل والإلغاء قيد الاعتماد."
+          }
+        },
+        "SIZING": {
+          "TITLE": "المقاسات",
+          "FIT": {
+            "QUESTION": "أيّ مقاس أختار؟",
+            "ANSWER": "نعمل على إعداد دليل المقاسات. إذا احتجتم إلى مساعدة في اختيار مقاس قطعة معيّنة، أخبرونا باسمها."
+          },
+          "CUSTOM": {
+            "QUESTION": "هل يتوفّر التفصيل حسب المقاس؟",
+            "ANSWER": "توفر التفصيل حسب المقاس ومدته قيد التأكيد. تواصلوا معنا بشأن القطعة التي تهمّكم."
+          }
+        },
+        "SHIPPING": {
+          "TITLE": "الشحن والإرجاع",
+          "DESTINATIONS": {
+            "QUESTION": "إلى أين تشحنون؟",
+            "ANSWER": "سيتم تأكيد وجهات الشحن قبل إطلاق المتجر."
+          },
+          "RETURNS": {
+            "QUESTION": "ما سياسة الإرجاع؟",
+            "ANSWER": "راجعوا صفحة الشحن والإرجاع للاطلاع على المستجدّات. شروط الإرجاع والاستبدال قيد الاعتماد."
+          }
+        },
+        "PAYMENT": {
+          "TITLE": "الدفع",
+          "METHODS": {
+            "QUESTION": "ما طرق الدفع المقبولة؟",
+            "ANSWER": "سيتم تأكيد طرق الدفع قبل إتاحة إتمام الشراء."
+          }
+        }
+      },
+      "SHIPPING": {
+        "DELIVERY": {
+          "TITLE": "خيارات التوصيل",
+          "BODY": "سيتم تأكيد طرق التوصيل والمدد التقديرية والرسوم قبل إتاحة إتمام الشراء."
+        },
+        "DESTINATIONS": {
+          "TITLE": "وجهات الشحن",
+          "BODY": "سيؤكّد توكّل وجهات الشحن المتاحة قبل إطلاق المتجر."
+        },
+        "CUSTOM": {
+          "TITLE": "القطع المفصّلة حسب المقاس",
+          "BODY": "مدد تجهيز القطع المفصّلة حسب المقاس وتوصيلها قيد التأكيد."
+        },
+        "RETURNS": {
+          "TITLE": "الإرجاع والاستبدال",
+          "BODY": "شروط الأهلية ومهل الإرجاع وإجراءات الاستبدال قيد الاعتماد."
+        },
+        "CONTACT": {
+          "TITLE": "التواصل",
+          "BODY": "تواصلوا مع خدمة العملاء إذا كانت لديكم أسئلة حول التوصيل أو الإرجاع."
+        }
+      },
+      "PRIVACY": {
+        "COLLECTION": {
+          "TITLE": "المعلومات التي نجمعها",
+          "BODY": "يطلب نموذج التواصل الاسم والبريد الإلكتروني والموضوع والرسالة. ويمكنكم إضافة مرجع الطلب."
+        },
+        "USAGE": {
+          "TITLE": "كيف نستخدم المعلومات",
+          "BODY": "يستخدم فريق خدمة العملاء المعلومات التي ترسلونها لمراجعة استفساركم والردّ عليه."
+        },
+        "LOCAL_STORAGE": {
+          "TITLE": "تفضيل اللغة",
+          "BODY": "يحفظ المتجر اللغة التي اخترتموها في متصفحكم لاستعادتها عند زيارتكم التالية."
+        },
+        "RIGHTS": {
+          "TITLE": "استفسارات الخصوصية",
+          "BODY": "يمكنكم التواصل مع خدمة العملاء للاستفسار عن المعلومات التي ترسلونها. سياسة الخصوصية الكاملة قيد المراجعة."
+        },
+        "CONTACT": {
+          "TITLE": "التواصل",
+          "BODY": "استخدموا نموذج التواصل للاستفسارات المتعلقة بالخصوصية. يرجى عدم إدخال كلمات المرور أو بيانات الدفع."
+        }
+      },
+      "TERMS": {
+        "INTRODUCTION": {
+          "TITLE": "مقدّمة",
+          "BODY": "تعرض هذه المسودة الموضوعات التي ستتناولها الشروط النهائية لمتجر توكّل."
+        },
+        "ORDERS": {
+          "TITLE": "الطلبات والأسعار",
+          "BODY": "سيتم تأكيد تفاصيل قبول الطلبات والأسعار والعملة قبل إتاحة إتمام الشراء."
+        },
+        "PAYMENT": {
+          "TITLE": "الدفع",
+          "BODY": "طرق الدفع المقبولة قيد التأكيد."
+        },
+        "DELIVERY": {
+          "TITLE": "التوصيل والإرجاع",
+          "BODY": "راجعوا صفحة الشحن والإرجاع للاطّلاع على آخر المستجدّات بشأن شروط التوصيل والإرجاع."
+        },
+        "INTELLECTUAL_PROPERTY": {
+          "TITLE": "الملكية الفكرية",
+          "BODY": "ستتناول الشروط النهائية استخدام عناصر هوية توكّل وصوره ومحتواه."
+        }
+      }
+    }
+  }
+}

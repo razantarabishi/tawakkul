@@ -1,0 +1,60 @@
+<p-drawer
+  [position]="direction() === 'rtl' ? 'left' : 'right'"
+  appendTo="body"
+  [blockScroll]="true"
+  [visible]="visible()"
+  [pt]="drawerAttributes"
+  (visibleChange)="setVisible($event)"
+  styleClass="w-full! max-w-md! rounded-none! border-0! bg-white! text-[#0e0e0f]! [font-family:'Be_Vietnam_Pro',ui-sans-serif,system-ui,sans-serif]"
+>
+  <ng-template #headless>
+    <div
+      class="flex min-h-16 shrink-0 items-center justify-between gap-3 border-b border-[#e9e6e7] px-5 sm:px-6"
+    >
+      <h2 id="shopping-bag-title" class="text-xs font-semibold tracking-[0.18em] uppercase">
+        {{ 'CUSTOMER.SHOPPING_BAG.TITLE' | translate: { count: emptyCount() } }}
+      </h2>
+      <button
+        type="button"
+        [attr.aria-label]="'CUSTOMER.SHOPPING_BAG.CLOSE' | translate"
+        class="-me-3 grid size-11 shrink-0 place-items-center hover:text-[#801e3e] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#801e3e]"
+        [pAutoFocus]="true"
+        (click)="setVisible(false)"
+      >
+        <i class="pi pi-times text-xl" aria-hidden="true"></i>
+      </button>
+    </div>
+
+    <div class="min-h-0 flex-1 overflow-y-auto overscroll-contain">
+      <div
+        class="flex min-h-full flex-col items-center justify-center px-6 py-10 text-center sm:px-8 sm:py-16"
+      >
+        <svg
+          class="size-9 shrink-0 text-[#801e3e]"
+          aria-hidden="true"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.4"
+        >
+          <path d="M5 8h14l-1 13H6L5 8ZM9 8V6a3 3 0 0 1 6 0v2" />
+        </svg>
+        <p class="mt-6 text-xl leading-tight font-semibold uppercase sm:text-2xl">
+          {{ 'CUSTOMER.SHOPPING_BAG.EMPTY_TITLE' | translate }}
+        </p>
+        <p class="mt-2 text-sm text-[#5c5759]">
+          {{ 'CUSTOMER.SHOPPING_BAG.EMPTY_DESCRIPTION' | translate }}
+        </p>
+        <a
+          class="mt-8 inline-flex min-h-12 max-w-full items-center justify-center bg-[#0e0e0f] px-7 py-3 text-xs font-semibold tracking-[0.16em] text-white uppercase transition-colors hover:bg-[#801e3e] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#801e3e] aria-disabled:pointer-events-none"
+          [routerLink]="collectionRoute()"
+          role="link"
+          [attr.aria-disabled]="collectionRoute() ? null : 'true'"
+          (click)="collectionRoute() && setVisible(false)"
+        >
+          {{ 'CUSTOMER.SHOPPING_BAG.SHOP_COLLECTION' | translate }}
+        </a>
+      </div>
+    </div>
+  </ng-template>
+</p-drawer>

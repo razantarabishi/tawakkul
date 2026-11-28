@@ -1,5 +1,6 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, viewChild } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { TranslatePipe } from '@ngx-translate/core';
 import { Footer, FooterLink, FooterSocialLink } from '../../../shared/components/footer/footer';
 import {
   Navbar,
@@ -7,30 +8,33 @@ import {
   NavbarGroup,
   NavbarLink,
 } from '../../../shared/components/navbar/navbar';
+import { ShoppingBag } from '../../cart/shopping-bag/shopping-bag';
+import { SUPPORT_PAGES } from '../../support/support-pages';
 
-const NEW_ARRIVALS = { label: 'New Arrivals' };
-const KIDS = { label: 'Tawakkul Kids' };
-const OUR_STORY = { label: 'Our Story' };
-const SIZE_GUIDE = { label: 'Size Guide' };
-const SHIPPING_AND_RETURNS = { label: 'Shipping & Returns' };
+const NEW_ARRIVALS = { label: 'NAVBAR.NEW_ARRIVALS' };
+const KIDS = { label: 'NAVBAR.KIDS' };
+const OUR_STORY = { label: 'NAVBAR.OUR_STORY' };
+const SIZE_GUIDE = SUPPORT_PAGES.size;
 const WOMEN_LINKS: readonly NavbarLink[] = [
-  { label: 'Shop All' },
-  { label: 'Sport Chic' },
-  { label: 'Abayas' },
-  { label: 'Scarves & Accessories' },
-  { label: 'Jackets & Coats' },
-  { label: 'Modest Swimwear' },
+  { label: 'NAVBAR.SHOP_ALL' },
+  { label: 'NAVBAR.SPORT_CHIC' },
+  { label: 'NAVBAR.ABAYAS' },
+  { label: 'NAVBAR.SCARVES_ACCESSORIES' },
+  { label: 'NAVBAR.JACKETS_COATS' },
+  { label: 'NAVBAR.MODEST_SWIMWEAR' },
 ];
 
 @Component({
   selector: 'app-customer-layout',
-  imports: [Footer, Navbar, RouterOutlet],
+  imports: [Footer, Navbar, RouterOutlet, ShoppingBag, TranslatePipe],
   templateUrl: './customer-layout.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CustomerLayout {
+  private readonly shoppingBag = viewChild.required(ShoppingBag);
+
   protected readonly brand = {
-    name: 'Tawakkul Modest',
+    nameKey: 'COMMON.BRAND_NAME',
     wordmark: 'TAWAKKUL',
     arabic: 'توكّل',
     home: '/',
@@ -39,15 +43,15 @@ export class CustomerLayout {
   protected readonly navigation: readonly (NavbarLink | NavbarGroup)[] = [
     NEW_ARRIVALS,
     {
-      label: 'Women',
+      label: 'NAVBAR.WOMEN',
       sections: [
-        { label: 'Women', links: WOMEN_LINKS },
+        { label: 'NAVBAR.WOMEN', links: WOMEN_LINKS },
         {
-          label: 'Discover',
+          label: 'NAVBAR.DISCOVER',
           links: [
             NEW_ARRIVALS,
-            { label: 'The Tawakkul Set' },
-            { label: 'All Collections' },
+            { label: 'NAVBAR.TAWAKKUL_SET' },
+            { label: 'NAVBAR.ALL_COLLECTIONS' },
             SIZE_GUIDE,
           ],
         },
@@ -58,34 +62,42 @@ export class CustomerLayout {
   ];
 
   protected readonly actions: readonly NavbarAction[] = [
-    { label: 'Search', icon: 'search' },
-    { label: 'Sign in', icon: 'account', inMobileMenu: true },
-    { label: 'Wishlist', icon: 'heart', inMobileMenu: true },
-    { label: 'Shopping bag', icon: 'bag' },
+    { label: 'NAVBAR.SEARCH', icon: 'search' },
+    { label: 'COMMON.SIGN_IN', icon: 'account', inMobileMenu: true },
+    { label: 'COMMON.WISHLIST', icon: 'heart', inMobileMenu: true },
+    {
+      label: 'CUSTOMER.SHOPPING_BAG.EMPTY_LABEL',
+      icon: 'bag',
+      opensDialog: true,
+      onSelect: (trigger) => this.shoppingBag().open(trigger),
+    },
   ];
 
   protected readonly website = { label: 'tawakkulmodest.com', url: 'https://tawakkulmodest.com/' };
   protected readonly shopLinks: readonly FooterLink[] = [NEW_ARRIVALS, ...WOMEN_LINKS, KIDS];
-  protected readonly careLinks: readonly FooterLink[] = [
-    { label: 'Contact Us' },
-    { label: 'FAQ' },
+  protected readonly mobileSupportLinks: readonly NavbarLink[] = [
+    SUPPORT_PAGES.contact,
+    SUPPORT_PAGES.faq,
     SIZE_GUIDE,
-    SHIPPING_AND_RETURNS,
-    { label: 'Track an Order' },
-    { label: 'My Account' },
+    SUPPORT_PAGES.shipping,
+  ];
+  protected readonly careLinks: readonly FooterLink[] = [
+    ...this.mobileSupportLinks,
+    { label: 'FOOTER.TRACK_ORDER' },
+    { label: 'FOOTER.MY_ACCOUNT' },
   ];
   protected readonly aboutLinks: readonly FooterLink[] = [
     OUR_STORY,
-    { label: 'A Connection Beyond Fashion' },
+    { label: 'FOOTER.CONNECTION' },
   ];
   protected readonly legalLinks: readonly FooterLink[] = [
-    { label: 'Privacy Policy' },
-    { label: 'Terms & Conditions' },
-    SHIPPING_AND_RETURNS,
+    SUPPORT_PAGES.privacy,
+    SUPPORT_PAGES.terms,
+    SUPPORT_PAGES.shipping,
   ];
   protected readonly socialLinks: readonly FooterSocialLink[] = [
-    { label: 'Instagram', icon: 'instagram' },
-    { label: 'Telegram', icon: 'telegram' },
-    { label: 'YouTube', icon: 'youtube' },
+    { label: 'FOOTER.INSTAGRAM', icon: 'instagram' },
+    { label: 'FOOTER.TELEGRAM', icon: 'telegram' },
+    { label: 'FOOTER.YOUTUBE', icon: 'youtube' },
   ];
 }

@@ -1,0 +1,185 @@
+<form
+  [formGroup]="form"
+  (ngSubmit)="submit()"
+  class="min-w-0"
+  [attr.aria-busy]="state() === 'sending'"
+>
+  <fieldset
+    [disabled]="state() === 'sending'"
+    class="grid min-w-0 gap-x-5 gap-y-5 sm:grid-cols-2 [&_label]:mb-2 [&_label]:block [&_label]:text-xs [&_label]:font-semibold [&_label]:tracking-widest [&_label]:uppercase [&_:is(input,select,textarea)]:w-full [&_:is(input,select,textarea)]:border [&_:is(input,select,textarea)]:border-[#c9c5c7] [&_:is(input,select,textarea)]:bg-white [&_:is(input,select,textarea)]:px-4 [&_:is(input,select,textarea)]:py-3 [&_:is(input,select,textarea):focus]:outline-2 [&_:is(input,select,textarea):focus]:outline-[#801e3e] [&_[aria-invalid=true]]:border-[#801e3e]"
+  >
+    <div>
+      <label for="contact-name">{{ 'SUPPORT.CONTACT.FULL_NAME' | translate }}</label>
+      <input
+        id="contact-name"
+        type="text"
+        autocomplete="name"
+        maxlength="120"
+        required
+        formControlName="fullName"
+        [attr.aria-invalid]="invalid('fullName')"
+        [attr.aria-describedby]="invalid('fullName') ? 'contact-name-error' : null"
+      />
+      @if (invalid('fullName')) {
+        <ng-container
+          *ngTemplateOutlet="
+            fieldError;
+            context: { id: 'contact-name-error', key: 'SUPPORT.CONTACT.INVALID_NAME' }
+          "
+        />
+      }
+    </div>
+    <div>
+      <label for="contact-email">{{ 'SUPPORT.CONTACT.EMAIL_ADDRESS' | translate }}</label>
+      <input
+        id="contact-email"
+        type="email"
+        autocomplete="email"
+        maxlength="254"
+        required
+        formControlName="email"
+        dir="ltr"
+        class="rtl:text-right"
+        [attr.aria-invalid]="invalid('email')"
+        [attr.aria-describedby]="invalid('email') ? 'contact-email-error' : null"
+      />
+      @if (invalid('email')) {
+        <ng-container
+          *ngTemplateOutlet="
+            fieldError;
+            context: { id: 'contact-email-error', key: 'SUPPORT.CONTACT.INVALID_EMAIL' }
+          "
+        />
+      }
+    </div>
+    <div>
+      <div class="flex flex-wrap justify-between gap-x-3">
+        <label for="contact-order">{{ 'SUPPORT.CONTACT.ORDER_REFERENCE' | translate }}</label>
+        <span id="contact-order-optional" class="mb-2 text-xs text-[#5c5759]">{{
+          'SUPPORT.CONTACT.OPTIONAL' | translate
+        }}</span>
+      </div>
+      <input
+        id="contact-order"
+        type="text"
+        maxlength="100"
+        formControlName="orderReference"
+        [attr.aria-invalid]="invalid('orderReference')"
+        [attr.aria-describedby]="
+          invalid('orderReference')
+            ? 'contact-order-optional contact-order-error'
+            : 'contact-order-optional'
+        "
+      />
+      @if (invalid('orderReference')) {
+        <ng-container
+          *ngTemplateOutlet="
+            fieldError;
+            context: { id: 'contact-order-error', key: 'SUPPORT.CONTACT.INVALID_ORDER' }
+          "
+        />
+      }
+    </div>
+    <div>
+      <label for="contact-topic">{{ 'SUPPORT.CONTACT.TOPIC' | translate }}</label>
+      <div class="relative">
+        <select
+          id="contact-topic"
+          required
+          formControlName="topic"
+          class="min-h-12 cursor-pointer appearance-none pe-10!"
+          [attr.aria-invalid]="invalid('topic')"
+          [attr.aria-describedby]="invalid('topic') ? 'contact-topic-error' : null"
+        >
+          <option value="" disabled>{{ 'SUPPORT.CONTACT.SELECT_TOPIC' | translate }}</option>
+          @for (topic of topics; track topic) {
+            <option [value]="topic">{{ 'SUPPORT.CONTACT.TOPICS.' + topic | translate }}</option>
+          }
+        </select>
+        <i
+          class="pi pi-chevron-down pointer-events-none absolute end-4 top-1/2 -translate-y-1/2 text-xs"
+          aria-hidden="true"
+        ></i>
+      </div>
+      @if (invalid('topic')) {
+        <ng-container
+          *ngTemplateOutlet="
+            fieldError;
+            context: { id: 'contact-topic-error', key: 'SUPPORT.CONTACT.INVALID_TOPIC' }
+          "
+        />
+      }
+    </div>
+    <div class="sm:col-span-2">
+      <label for="contact-message">{{ 'SUPPORT.CONTACT.MESSAGE' | translate }}</label>
+      <textarea
+        id="contact-message"
+        rows="4"
+        maxlength="4000"
+        required
+        formControlName="message"
+        class="block min-h-28 resize-y"
+        [attr.aria-invalid]="invalid('message')"
+        [attr.aria-describedby]="invalid('message') ? 'contact-message-error' : null"
+      ></textarea>
+      @if (invalid('message')) {
+        <ng-container
+          *ngTemplateOutlet="
+            fieldError;
+            context: { id: 'contact-message-error', key: 'SUPPORT.CONTACT.INVALID_MESSAGE' }
+          "
+        />
+      }
+    </div>
+    <div class="sm:col-span-2">
+      <button
+        type="submit"
+        class="inline-flex min-h-14 cursor-pointer items-center justify-center bg-[#0e0e0f] px-9 py-3 text-xs font-semibold tracking-[0.15em] text-white uppercase hover:bg-[#801e3e] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#801e3e] disabled:cursor-wait disabled:opacity-65"
+      >
+        {{
+          (state() === 'sending' ? 'SUPPORT.CONTACT.SENDING' : 'SUPPORT.CONTACT.SEND') | translate
+        }}
+      </button>
+    </div>
+  </fieldset>
+
+  @if (state() === 'sent') {
+    <p
+      class="mt-4 border-s-2 border-emerald-700 bg-emerald-50 px-4 py-3 text-sm text-emerald-900"
+      role="status"
+    >
+      {{ 'SUPPORT.CONTACT.SUCCESS' | translate }}
+    </p>
+  }
+  @if (state() === 'error') {
+    <p
+      class="mt-4 border-s-2 border-[#801e3e] bg-[#f8f0f3] px-4 py-3 text-sm text-[#801e3e]"
+      role="alert"
+    >
+      {{ 'SUPPORT.CONTACT.ERROR' | translate }}
+    </p>
+  }
+
+  <div class="mt-12 grid gap-6 border-t border-[#e9e6e7] pt-8 sm:grid-cols-2">
+    <div>
+      <h2 class="text-xs font-semibold tracking-widest uppercase">
+        {{ 'SUPPORT.CONTACT.REPLY_TITLE' | translate }}
+      </h2>
+      <p class="mt-2 text-sm text-[#5c5759]">{{ 'SUPPORT.CONTACT.REPLY_TEXT' | translate }}</p>
+    </div>
+    <div>
+      <h2 class="text-xs font-semibold tracking-widest uppercase">
+        {{ 'FOOTER.PRIVACY_POLICY' | translate }}
+      </h2>
+      <a
+        [routerLink]="privacyRoute"
+        class="mt-2 inline-flex min-h-8 items-center text-sm text-[#801e3e] underline underline-offset-4"
+        >{{ 'SUPPORT.CONTACT.PRIVACY_LINK' | translate }}</a
+      >
+    </div>
+  </div>
+</form>
+
+<ng-template #fieldError let-id="id" let-key="key">
+  <p [id]="id" class="mt-2 text-xs text-[#801e3e]" role="alert">{{ key | translate }}</p>
+</ng-template>
