@@ -1,9 +1,24 @@
 <div class="flex flex-col min-h-screen">
-  <!-- Customer header -->
+  <app-navbar
+    class="sticky top-0 z-30 block"
+    [brand]="brand"
+    [links]="navigation"
+    [actions]="actions"
+  />
 
   <main class="flex-1">
     <router-outlet />
   </main>
 
-  <!-- Customer footer -->
+  <app-footer
+    [brand]="brand"
+    tagline="Modesty, everywhere."
+    supportingLine="Beyond the ordinary."
+    [website]="website"
+    [shopLinks]="shopLinks"
+    [careLinks]="careLinks"
+    [aboutLinks]="aboutLinks"
+    [legalLinks]="legalLinks"
+    [socialLinks]="socialLinks"
+  />
 </div>

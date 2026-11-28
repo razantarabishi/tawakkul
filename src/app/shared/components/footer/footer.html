@@ -1,0 +1,123 @@
+<footer
+  class="bg-[#101010] text-white [&_a:hover]:underline [&_a:hover]:underline-offset-4 [&_a:focus-visible]:outline-2 [&_a:focus-visible]:outline-offset-4 [&_a:focus-visible]:outline-white">
+  <div
+    class="mx-auto w-full max-w-[88rem] px-[max(1rem,env(safe-area-inset-left),env(safe-area-inset-right))] pt-12 pb-8 sm:px-8 sm:pt-16 min-[72rem]:px-12 min-[72rem]:pt-24 min-[72rem]:pb-10">
+    <div class="grid grid-cols-2 gap-x-6 gap-y-10 min-[72rem]:grid-cols-12 min-[72rem]:gap-x-8">
+      <div class="col-span-2 min-w-0 min-[72rem]:col-span-5">
+        <a class="inline-flex max-w-full flex-col items-center gap-2 px-2 leading-none hover:no-underline"
+          [routerLink]="brand().home" [attr.aria-label]="brand().name + ' home'">
+          <span class="text-xl font-medium text-white/80" lang="ar" dir="rtl">{{
+            brand().arabic
+            }}</span>
+          <span class="ps-[0.28em] text-2xl font-bold tracking-[0.28em] sm:text-[2rem]">
+            {{ brand().wordmark }}
+          </span>
+        </a>
+
+        <p class="mt-7 text-lg leading-tight font-bold tracking-tight uppercase sm:mt-9 sm:text-2xl">
+          {{ tagline() }}
+          <span class="block text-[#888688]">{{ supportingLine() }}</span>
+        </p>
+
+        <div class="mt-8 max-w-96 sm:mt-10" role="group" aria-label="Newsletter">
+          <p class="mb-2 text-xs font-semibold tracking-[0.14em] text-[#a6a4a6] uppercase">
+            Newsletter
+          </p>
+          <div class="flex items-center gap-3 border-b border-white/45 py-2">
+            <input class="min-h-11 min-w-0 flex-1 bg-transparent text-sm placeholder:text-[#b8b5b8]" type="email"
+              aria-label="Your email address" placeholder="Your email address" disabled />
+            <button class="inline-flex min-h-11 items-center gap-2 text-xs font-semibold tracking-[0.12em] uppercase"
+              type="button" disabled>
+              Subscribe <i class="pi pi-arrow-right" aria-hidden="true"></i>
+            </button>
+          </div>
+          <p class="mt-2 text-xs text-[#a6a4a6]">Newsletter signup is currently unavailable.</p>
+        </div>
+      </div>
+
+      <div class="min-w-0 min-[72rem]:col-span-2">
+        <ng-container *ngTemplateOutlet="linkList; context: { title: 'Shop', links: shopLinks() }" />
+      </div>
+      <div class="min-w-0 min-[72rem]:col-span-2">
+        <ng-container *ngTemplateOutlet="linkList; context: { title: 'Customer Care', links: careLinks() }" />
+      </div>
+
+      <div
+        class="col-span-2 grid gap-x-6 gap-y-8 sm:grid-cols-2 min-[72rem]:col-span-3 min-[72rem]:grid-cols-1 min-[72rem]:content-start">
+        <ng-container *ngTemplateOutlet="linkList; context: { title: 'About Tawakkul', links: aboutLinks() }" />
+        <div>
+          <h2 class="mb-2 text-xs font-semibold tracking-[0.14em] text-[#a6a4a6] uppercase">
+            Contact
+          </h2>
+          <a class="inline-flex min-h-11 max-w-full items-center gap-2 text-sm wrap-anywhere" [href]="website().url">
+            <i class="pi pi-globe shrink-0" aria-hidden="true"></i>{{ website().label }}
+          </a>
+          @if (socialLinks().length) {
+          <ul class="mt-3 flex flex-wrap gap-1" aria-label="Social media">
+            @for (social of socialLinks(); track social.icon) {
+            <li>
+              @if (social.url) {
+              <a class="grid size-11 place-items-center border border-white/20 hover:border-white/50"
+                [href]="social.url" [attr.aria-label]="social.label">
+                <i [class]="'pi pi-' + social.icon" aria-hidden="true"></i>
+              </a>
+              } @else {
+              <span class="grid size-11 place-items-center border border-white/20" role="link" aria-disabled="true"
+                [attr.aria-label]="social.label">
+                <i [class]="'pi pi-' + social.icon" aria-hidden="true"></i>
+              </span>
+              }
+            </li>
+            }
+          </ul>
+          }
+        </div>
+      </div>
+    </div>
+
+    <div class="@container mt-12 sm:mt-16 min-[72rem]:mt-20">
+      <div class="flex items-end justify-between gap-2" aria-hidden="true">
+        <span class="text-[16.35cqw] leading-[0.82] font-black tracking-[-0.045em] whitespace-nowrap">
+          {{ brand().wordmark }}
+        </span>
+        <span
+          class="mb-[0.5cqw] h-[4.25cqw] w-[3cqw] shrink-0 bg-[#801e3e] [clip-path:polygon(0_0,100%_0,100%_100%,50%_72%,0_100%)]"></span>
+      </div>
+    </div>
+
+    <div
+      class="mt-6 grid gap-x-6 gap-y-3 border-t border-white/15 pt-5 text-xs text-[#a6a4a6] sm:mt-8 min-[72rem]:grid-cols-[1fr_auto_1fr] min-[72rem]:items-center">
+      <p>© {{ year }} {{ brand().name }}. All rights reserved.</p>
+      <nav aria-label="Legal">
+        <ul class="flex flex-wrap gap-x-6">
+          @for (link of legalLinks(); track link.label) {
+          <li><ng-container *ngTemplateOutlet="footerLink; context: { $implicit: link }" /></li>
+          }
+        </ul>
+      </nav>
+    </div>
+  </div>
+</footer>
+
+<ng-template #linkList let-title="title" let-links="links">
+  <nav [attr.aria-label]="title">
+    <h2 class="mb-3 text-xs font-semibold tracking-[0.14em] text-[#a6a4a6] uppercase sm:mb-5">
+      {{ title }}
+    </h2>
+    <ul class="text-sm">
+      @for (link of links; track link.label) {
+      <li><ng-container *ngTemplateOutlet="footerLink; context: { $implicit: link }" /></li>
+      }
+    </ul>
+  </nav>
+</ng-template>
+
+<ng-template #footerLink let-link>
+  @if (link.route) {
+  <a class="inline-flex min-h-9 items-center py-1" [routerLink]="link.route">{{ link.label }}</a>
+  } @else {
+  <span class="inline-flex min-h-9 items-center py-1" role="link" aria-disabled="true">{{
+    link.label
+    }}</span>
+  }
+</ng-template>
